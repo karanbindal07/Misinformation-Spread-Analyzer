@@ -1,0 +1,19 @@
+Dataset name: Covid-19 Misinformation Tweets Labeled Dataset
+Author: Möbius
+Source: https://www.kaggle.com/datasets/https://www.kaggle.com/datasets/arashnic/misinfo-graph
+Downloaded on: 2026-01-14
+
+Description:
+Graph-based Twitter dataset where each graph represents a conversation
+related to COVID-19 topics. Each conversation is stored as a graph
+with tweets as nodes and interactions as edges.
+
+Processing:
+The original dataset is distributed as multiple graph folders
+containing nodes.csv files. A master tabular dataset
+(covid_misinfo_raw.csv) was constructed by aggregating all nodes.csv
+files and assigning labels based on graph folder categories
+(misinformation vs non-conspiracy).
+
+Notes:
+This dataset is used for educational and research purposes.
