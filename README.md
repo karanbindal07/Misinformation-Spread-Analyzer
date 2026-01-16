@@ -19,28 +19,40 @@ Python, pandas, numpy, scikit-learn, matplotlib, seaborn, scipy, nltk
 This step creates a baseline for misinformation detection using only tweet-level metadata, without including text content.
 
 Features used:
+
 followers: number of followers of the tweet author
+
 friends: number of accounts the author follows
+
 time: timestamp related feature
 
 Target variable:
+
 label
 
 0 = factual tweet
+
 1 = misinformation
 
 Model:
+
 Logistic Regression
+
 Stratified 80/20 train–test split
 
 Evaluation:
-Accuracy, precision, recall, and F1-score
+
+
 Threshold analysis to examine precision and recall
 
 Key findings:
-The dataset is is very impoloced (80/20)
+
+The dataset is is very imbalanced (80/20)
+
 Precision and recall for misinformation remain low across thresholds
+
 Metadata alone provides limited predictive signal
 
 Conclusion:
+
 This baseline model demonstrates that metadata is insufficient for reliable misinformation detection. Future work will incorporate tweet text and network based features to improve performance. This model will be used as a comparison when evaluating models that incorporate tweet text.
