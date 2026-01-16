@@ -43,4 +43,4 @@ Precision and recall for misinformation remain low across thresholds
 Metadata alone provides limited predictive signal
 
 Conclusion:
-This baseline demonstrates that user and metadata are insufficient for reliable misinformation detection. Future work will incorporate tweet text and network-based features to improve performance. This baseline model is used to find out how metadata alone contributes to misinformation detection. It will also be used to compare once to models that do take in texts. 
+This baseline model demonstrates that metadata is insufficient for reliable misinformation detection. Future work will incorporate tweet text and network based features to improve performance. This model will be used as a comparison when evaluating models that incorporate tweet text.
