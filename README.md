@@ -20,38 +20,37 @@ This step creates a baseline for misinformation detection using only tweet-level
 
 Features used:
 
-followers: number of followers of the tweet author
+- followers: number of followers of the tweet author
 
-friends: number of accounts the author follows
+- friends: number of accounts the author follows
 
-time: timestamp related feature
+- time: timestamp related feature
 
 Target variable:
 
-label
+- label
 
-0 = factual tweet
+    - 0 = factual tweet
 
-1 = misinformation
+    - 1 = misinformation
 
 Model:
 
-Logistic Regression
+- Logistic Regression
 
-Stratified 80/20 train–test split
+- Stratified 80/20 train–test split
 
 Evaluation:
 
-
-Threshold analysis to examine precision and recall
+- Threshold analysis to examine precision and recall
 
 Key findings:
 
-The dataset is is very imbalanced (80/20)
+- The dataset is is very imbalanced (80/20)
 
-Precision and recall for misinformation remain low across thresholds
+- Precision and recall for misinformation remain low across thresholds
 
-Metadata alone provides limited predictive signal
+- Metadata alone provides limited predictive signal
 
 Conclusion:
 

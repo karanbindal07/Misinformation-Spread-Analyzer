@@ -29,3 +29,9 @@ master_df.to_csv(output_path, index=False)
 print("Saved master dataset to:", output_path)
 print("Shape:", master_df.shape)
 print("Columns:", master_df.columns.tolist())
+
+
+# Save processed version (baseline clean copy)
+processed_path = "data/processed/covid_misinfo_processed.csv"
+master_df.to_csv(processed_path, index=False)
+print("Saved processed dataset to:", processed_path)
