@@ -212,3 +212,7 @@ data/processed/
 models/
 outputs/
 
+.DS_Store
+
+data_text/raw/
+data_text/processed/
