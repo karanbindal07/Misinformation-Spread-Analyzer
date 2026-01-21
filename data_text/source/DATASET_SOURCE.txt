@@ -1,0 +1,17 @@
+Dataset name: ISOT Fake News Dataset
+Authors: Ahmed, H., Traore, I., & Saad, S.
+Source: https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset
+Downloaded on: 2026-01-19
+
+Description:
+The ISOT Fake News Dataset contains news articles labeled as fake or true.
+Articles are collected from multiple online news sources and cover political
+and general news topics.
+
+The dataset is distributed as two CSV files:
+- True.csv
+- Fake.csv
+
+Usage in Project:
+This dataset is used as the text-only data source for Stage 2 of the project,
+enabling content-based misinformation classification.
