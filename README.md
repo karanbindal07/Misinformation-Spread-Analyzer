@@ -87,3 +87,35 @@ This stage evaluates how well misinformation can be detected using **content alo
 Text based models significantly outperform metadata only baselines, indicating that linguistic features carry strong misinformation signals. This model establishes a second benchmark for comparison with the final hybrid model.
 
 ---
+
+## Stage 3 — Hybrid V0 Model (Text + Text Derived Metadata)
+
+This stage extends the text-only model by incorporating simple structural features derived from the text itself, testing whether non-semantic cues improve performance beyond language alone.
+
+## Dataset
+- ISOT Fake News Dataset
+- Same processed text used in Stage 2 to ensure a controlled comparison
+
+## Features
+- TF-IDF text features
+- Text-derived metadata, including:
+- Document length
+- Token counts
+- Basic structural statistics
+
+## Model
+- Logistic Regression classifier
+- Combined sparse text features with standardized numeric features
+
+## Evaluation
+- Classification report
+- Threshold analysis
+- Precision–Recall curve
+
+## Key Findings
+- Hybrid v0 shows marginal but consistent improvements over the text-only model.
+- Structural cues complement semantic information, improving precision at higher thresholds.
+- Gains are limited, suggesting that richer behavioral metadata is needed for larger improvements.
+
+## Conclusion
+This hybrid model demonstrates that simple text-derived structural features can enhance content-based misinformation detection. While improvements over the text-only model are modest, the results motivate the incorporation of true diffusion and user metadata in subsequent hybrid models.
