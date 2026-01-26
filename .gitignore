@@ -216,3 +216,6 @@ outputs/
 
 data_text/raw/
 data_text/processed/
+
+data_fakenewsnet/raw/
+data_fakenewsnet/processed/

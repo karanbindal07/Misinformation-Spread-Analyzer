@@ -1,0 +1,26 @@
+Dataset name: FakeNewsNet (PolitiFact CSV subset)
+
+Authors:
+Kai Shu et al.
+
+Source:
+https://github.com/KaiDMML/FakeNewsNet
+
+Downloaded on:
+2026-01-26
+
+Description:
+This project uses the FakeNewsNet PolitiFact subset distributed as two CSV files:
+- politifact_real.csv
+- politifact_fake.csv
+
+Each row corresponds to a fact-checked news item from PolitiFact, labeled as real or fake.
+This dataset provides article-level content/metadata fields but
+does not contain the same Twitter conversation-graph diffusion fields used in Stage 1.
+
+Files used:
+- data_fakenewsnet/raw/politifact/politifact_real.csv
+- data_fakenewsnet/raw/politifact/politifact_fake.csv
+
+Notes:
+Raw CSVs are stored locally and ignored by git. Only processed outputs and documentation are tracked.
