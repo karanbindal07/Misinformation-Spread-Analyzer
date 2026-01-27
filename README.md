@@ -119,3 +119,40 @@ This stage extends the text-only model by incorporating simple structural featur
 
 ## Conclusion
 This hybrid model demonstrates that simple text-derived structural features can enhance content-based misinformation detection. While improvements over the text-only model are modest, the results motivate the incorporation of true diffusion and user metadata in subsequent hybrid models.
+
+
+--- 
+
+## Stage 3B — Metadata-Only Model (FakeNewsNet PolitiFact)
+
+This stage evaluates misinformation detection using metadata signals only, isolating the predictive value of social and engagement metadata without any language information.
+
+## Dataset
+- FakeNewsNet (PolitiFact subset)
+- Expert verified news articles labeled as fake or real
+- Uses metadata derived from social context (e.g., tweet activity)
+
+## Features
+- Metadata features only, including:
+  - Tweet count
+  - Engagement indicators
+  - Basic propagation statistics
+- No textual content is used in this model
+
+## Model
+- Logistic Regression classifier
+- Trained solely on standardized metadata features
+
+## Evaluation
+- Classification report
+- Threshold analysis
+- Precision–Recall curve
+
+## Key Findings
+- Metadata alone provides a meaningful but weaker signal compared to text-based models.
+- Performance drops relative to text-only baselines, indicating limited discriminative power from engagement statistics alone.
+- However, metadata captures complementary information not present in language features.
+
+## Conclusion
+
+The metadata-only model establishes a lower-bound baseline for misinformation detection using social context signals. While insufficient on its own, these features capture aspects of how misinformation spreads and gains attention. This motivates the final hybrid model, which combines both textual content and metadata to assess whether diffusion dynamics enhance predictive performance beyond content alone.
