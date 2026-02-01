@@ -212,3 +212,14 @@ This project demonstrates, through controlled experiments, that:
 - Diffusion metadata adds complementary but limited information
 
 The staged design emphasizes **interpretability, comparison, and honest evaluation**, reflecting how real-world misinformation systems are built and analyzed.
+
+---
+
+## Final Takeaways
+
+- Metadata only signals provide limited predictive power on their own.
+- Text features dominate misinformation detection performance.
+- Social context metadata contributes complementary signal when combined with text.
+- Hybrid models offer consistent but modest gains, highlighting the difficulty of early misinformation detection.
+
+This project demonstrates a controlled, dataset-aware evaluation of content, metadata, and hybrid approaches to misinformation detection.
