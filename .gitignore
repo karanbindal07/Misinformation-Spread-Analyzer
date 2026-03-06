@@ -206,16 +206,23 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Data science project folders
-data/raw/
-data/processed/
-models/
-outputs/
+# Data (never commit raw datasets)
+data/
+data_text/
+data_fakenewsnet/
+
+# Allow model artifacts needed for demo
+models/*
+!models/.gitkeep
+!models/*.joblib
+!models/*.json
+
+# Allow lightweight outputs for website/demo
+outputs/*
+!outputs/**/*.png
+!outputs/**/*.jpg
+!outputs/**/*.jpeg
+!outputs/**/*.svg
+!outputs/**/*.csv
 
 .DS_Store
-
-data_text/raw/
-data_text/processed/
-
-data_fakenewsnet/raw/
-data_fakenewsnet/processed/
