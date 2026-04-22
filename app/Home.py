@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 st.set_page_config(
     page_title="Misinformation Risk Triage",
@@ -71,3 +72,8 @@ Interactive Demo
 )
 
 st.info("Use the sidebar to explore the Demo, Methodology, and Results pages.")
+
+if os.path.exists("models/model_manifest_pro.json"):
+    st.success(
+        "Professional pipeline artifacts detected. Demo and Results pages now reflect the upgraded backend."
+    )

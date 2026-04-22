@@ -1,5 +1,7 @@
 # app/pages/1_Demo.py
 
+import json
+import os
 import streamlit as st
 import joblib
 import numpy as np
@@ -12,9 +14,26 @@ st.set_page_config(page_title="Demo Tool", page_icon="🧪", layout="wide")
 def load_artifacts():
     # NOTE: these paths assume you run streamlit from repo root:
     # streamlit run app/Home.py
+    pro_tfidf = "models/tfidf_model_pro.joblib"
+    pro_model = "models/lr_model_pro.joblib"
+
+    if os.path.exists(pro_tfidf) and os.path.exists(pro_model):
+        tfidf = joblib.load(pro_tfidf)
+        model = joblib.load(pro_model)
+        return tfidf, model, "Professional TF-IDF pipeline"
+
     tfidf = joblib.load("models/tfidf_model.joblib")
     model = joblib.load("models/lr_model.joblib")
-    return tfidf, model
+    return tfidf, model, "Legacy TF-IDF pipeline"
+
+
+@st.cache_data
+def load_manifest():
+    path = "models/model_manifest_pro.json"
+    if not os.path.exists(path):
+        return None
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 # ---------- Helpers ----------
 def risk_label(p: float) -> str:
@@ -128,7 +147,8 @@ def render_contrib_bars(items, positive=True):
 st.title("🧪 Demo Tool")
 st.caption("Paste article text and evaluate misinformation risk using the trained model.")
 
-tfidf, model = load_artifacts()
+tfidf, model, model_version = load_artifacts()
+manifest = load_manifest()
 
 text = st.text_area(
     "Article text",
@@ -140,7 +160,13 @@ col1, col2 = st.columns([1, 1])
 with col1:
     run = st.button("Analyze", use_container_width=True)
 with col2:
-    st.markdown("**Model:** TF-IDF + Logistic Regression (FakeNewsNet PolitiFact)")
+    st.markdown(f"**Model:** TF-IDF + Logistic Regression ({model_version})")
+
+if manifest:
+    st.caption(
+        f"Split policy: `{manifest.get('split_strategy', 'unknown')}` | "
+        f"Validation-selected threshold: `{manifest.get('selected_threshold', 'n/a')}`"
+    )
 
 # Optional: keep thresholds visible to user (still simple)
 with st.expander("Advanced (thresholds)", expanded=False):
