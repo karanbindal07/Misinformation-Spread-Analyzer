@@ -22,6 +22,10 @@ Large content streams cannot all be reviewed manually. A triage model can priori
 - `outputs/` evaluation artifacts and figures
 - `models/` serialized models and manifests
 - `PROJECT_UPGRADE_PLAN.md` professionalization roadmap
+- `.streamlit/config.toml` Streamlit runtime config for deployment
+- `runtime.txt` pinned Python runtime for cloud deployment
+- `requirements.txt` lean app/runtime dependencies for deployment
+- `requirements-full.txt` full local environment snapshot (research/notebooks)
 
 ## Key Experiments
 1. Metadata-only baseline (COVID graph-derived metadata)
@@ -83,6 +87,18 @@ Run tests:
 ```bash
 python3 -m unittest discover -s tests -q
 ```
+
+## Deploying the Web App (Recommended)
+Use Streamlit Community Cloud for the fastest recruiter-friendly public demo.
+
+1. Push this repository to GitHub (already done).
+2. Open Streamlit Community Cloud and create a new app from this repo.
+3. Set:
+   - Branch: `main`
+   - Main file path: `app/Home.py`
+4. Deploy.
+
+This repository now includes deployment-ready `requirements.txt`, `runtime.txt`, and `.streamlit/config.toml` to reduce cloud build issues.
 
 ## Responsible Use
 This repository should be used for research/education and analyst-assistive tooling.
