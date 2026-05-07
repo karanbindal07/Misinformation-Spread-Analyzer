@@ -1,4 +1,6 @@
 import streamlit as st
+import json
+import os
 import pandas as pd
 from PIL import Image
 
@@ -10,6 +12,27 @@ st.set_page_config(
 
 st.title("📈 Results")
 st.caption("Real model comparison results from the misinformation detection experiments.")
+
+pro_manifest_path = "models/model_manifest_pro.json"
+pro_metrics_path = "outputs/professional_eval/test_metrics.json"
+if os.path.exists(pro_manifest_path) and os.path.exists(pro_metrics_path):
+    with open(pro_manifest_path, "r", encoding="utf-8") as f:
+        pro_manifest = json.load(f)
+    with open(pro_metrics_path, "r", encoding="utf-8") as f:
+        pro_metrics = json.load(f)
+
+    st.markdown("## 0. Professional Pipeline Run (Latest)")
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Professional Accuracy", f"{pro_metrics.get('accuracy', 0):.3f}")
+    c2.metric("Professional Precision", f"{pro_metrics.get('precision', 0):.3f}")
+    c3.metric("Professional Recall", f"{pro_metrics.get('recall', 0):.3f}")
+    c4.metric("Professional F1", f"{pro_metrics.get('f1', 0):.3f}")
+
+    st.caption(
+        f"Split strategy: `{pro_manifest.get('split_strategy', 'unknown')}` | "
+        f"Validation-selected threshold: `{pro_manifest.get('selected_threshold', 'n/a')}`"
+    )
+    st.markdown("---")
 
 st.markdown("## 1. Best Model Comparison")
 
