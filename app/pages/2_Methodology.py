@@ -8,6 +8,10 @@ st.set_page_config(
 
 st.title("🧠 Methodology")
 st.caption("How the misinformation model was built and evaluated.")
+st.info(
+    "Project framing: this is an analyst-assistive risk triage system. "
+    "It predicts pattern-based risk, not ground-truth factuality."
+)
 
 st.markdown("## 1. Research Question")
 st.markdown(

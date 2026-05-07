@@ -144,8 +144,8 @@ def render_contrib_bars(items, positive=True):
             st.write(num)
 
 # ---------- UI ----------
-st.title("🧪 Demo Tool")
-st.caption("Paste article text and evaluate misinformation risk using the trained model.")
+st.title("🧪 Risk Triage Demo")
+st.caption("Paste article text to estimate ML risk score for analyst triage (not factual verification).")
 
 tfidf, model, model_version = load_artifacts()
 manifest = load_manifest()
@@ -167,6 +167,10 @@ if manifest:
         f"Split policy: `{manifest.get('split_strategy', 'unknown')}` | "
         f"Validation-selected threshold: `{manifest.get('selected_threshold', 'n/a')}`"
     )
+st.warning(
+    "This score is a statistical risk signal learned from historical labels. "
+    "It is not a determination of factual truth and should always be reviewed by a human."
+)
 
 # Optional: keep thresholds visible to user (still simple)
 with st.expander("Advanced (thresholds)", expanded=False):
@@ -202,9 +206,15 @@ if run:
 
         st.subheader("Result")
         c1, c2, c3 = st.columns(3)
-        c1.metric("Misinformation Probability", f"{p:.2f}")
+        c1.metric("ML Risk Score (Class-1 Probability)", f"{p:.2f}")
         c2.metric("Risk Level", risk_label_custom(p))
         c3.metric("Decision", decision_label_custom(p))
+
+        if 0.35 <= p <= 0.65:
+            st.info(
+                "Borderline zone: this score is near the decision boundary, so uncertainty is higher. "
+                "Treat this as triage-only and rely on manual verification."
+            )
 
         st.subheader("Why this prediction?")
         left, right = st.columns(2)
@@ -219,5 +229,5 @@ if run:
 
         st.caption(
             "Contributions are TF-IDF weights × logistic regression coefficients (log-odds). "
-            "Only terms present in your input are shown."
+            "Only terms present in your input are shown. These indicate model influence, not factual evidence."
         )

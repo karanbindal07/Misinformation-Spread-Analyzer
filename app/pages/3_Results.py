@@ -12,9 +12,15 @@ st.set_page_config(
 
 st.title("📈 Results")
 st.caption("Real model comparison results from the misinformation detection experiments.")
+st.info(
+    "Evaluation emphasis: discrimination and triage utility under held-out testing. "
+    "These metrics do not imply autonomous fact-checking reliability."
+)
 
 pro_manifest_path = "models/model_manifest_pro.json"
 pro_metrics_path = "outputs/professional_eval/test_metrics.json"
+meta_metrics_path = "outputs/professional_eval/metadata_test_metrics.json"
+hybrid_metrics_path = "outputs/professional_eval/hybrid_test_metrics.json"
 if os.path.exists(pro_manifest_path) and os.path.exists(pro_metrics_path):
     with open(pro_manifest_path, "r", encoding="utf-8") as f:
         pro_manifest = json.load(f)
@@ -34,7 +40,24 @@ if os.path.exists(pro_manifest_path) and os.path.exists(pro_metrics_path):
     )
     st.markdown("---")
 
-st.markdown("## 1. Best Model Comparison")
+if os.path.exists(pro_metrics_path) and os.path.exists(meta_metrics_path) and os.path.exists(hybrid_metrics_path):
+    with open(pro_metrics_path, "r", encoding="utf-8") as f:
+        text_metrics = json.load(f)
+    with open(meta_metrics_path, "r", encoding="utf-8") as f:
+        meta_metrics = json.load(f)
+    with open(hybrid_metrics_path, "r", encoding="utf-8") as f:
+        hybrid_metrics = json.load(f)
+
+    dynamic_rows = [
+        {"Model": "Text-only (Pro)", "Accuracy": text_metrics["accuracy"], "Precision": text_metrics["precision"], "Recall": text_metrics["recall"], "F1": text_metrics["f1"]},
+        {"Model": "Metadata-only (Pro)", "Accuracy": meta_metrics["accuracy"], "Precision": meta_metrics["precision"], "Recall": meta_metrics["recall"], "F1": meta_metrics["f1"]},
+        {"Model": "Hybrid (Pro)", "Accuracy": hybrid_metrics["accuracy"], "Precision": hybrid_metrics["precision"], "Recall": hybrid_metrics["recall"], "F1": hybrid_metrics["f1"]},
+    ]
+    st.markdown("## 1. Professional Pipeline Comparison (Current)")
+    st.dataframe(pd.DataFrame(dynamic_rows), use_container_width=True)
+    st.caption("These values are loaded from the latest script-generated test metric artifacts.")
+    st.markdown("---")
+st.markdown("## 2. Historical Controlled Benchmark Comparison")
 
 comparison_df = pd.read_csv("outputs/model_comparison/best_threshold_summary.csv")
 
@@ -58,14 +81,14 @@ The comparison focuses on three approaches:
 
 st.markdown("---")
 
-st.markdown("## 2. Model Comparison Chart")
+st.markdown("## 3. Model Comparison Chart")
 
 comparison_chart = Image.open("outputs/model_comparison/model_comparison_line.png")
 st.image(comparison_chart, caption="Comparison of model metrics across the controlled benchmark.", use_container_width=True)
 
 st.markdown("---")
 
-st.markdown("## 3. Precision–Recall Curves")
+st.markdown("## 4. Precision–Recall Curves")
 
 col1, col2, col3 = st.columns(3)
 
@@ -92,34 +115,6 @@ with col3:
         caption="Precision–Recall curve for the hybrid model.",
         use_container_width=True
     )
-
-st.markdown("---")
-
-st.markdown("## 4. Key Quantitative Results")
-
-st.markdown(
-    """
-Using the controlled FakeNewsNet PolitiFact benchmark, the best-performing thresholds produced the following results:
-
-- **Text-only model**
-  - Accuracy: **0.8246**
-  - Precision: **0.7207**
-  - Recall: **0.9302**
-  - F1: **0.8122**
-
-- **Hybrid model**
-  - Accuracy: **0.8294**
-  - Precision: **0.8125**
-  - Recall: **0.7558**
-  - F1: **0.7831**
-
-- **Metadata-only model**
-  - Accuracy: **0.5991**
-  - Precision: **0.5067**
-  - Recall: **0.8736**
-  - F1: **0.6414**
-"""
-)
 
 st.markdown("---")
 

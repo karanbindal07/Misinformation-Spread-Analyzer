@@ -104,5 +104,12 @@ This repository now includes deployment-ready `requirements.txt`, `runtime.txt`,
 This repository should be used for research/education and analyst-assistive tooling.
 It should not be used as a sole decision-maker for content moderation, sanctions, or claims of factual truth.
 
+## Recruiter Positioning
+Best framing for interviews and resume discussion:
+- Built an analyst-assistive misinformation risk triage pipeline, not a truth-verification engine.
+- Implemented leakage-aware evaluation (group-based split), validation-only threshold tuning, and reproducible artifact manifests.
+- Compared text vs metadata vs hybrid pipelines under a consistent experimental protocol.
+- Added interpretable inference outputs in a deployed Streamlit interface for decision support.
+
 ## Next Steps
 See `PROJECT_UPGRADE_PLAN.md` for prioritized upgrades across evaluation rigor, model depth, reliability, and deployment safety.
