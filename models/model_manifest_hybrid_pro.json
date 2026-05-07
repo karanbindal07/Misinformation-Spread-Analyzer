@@ -1,0 +1,45 @@
+{
+  "dataset": "FakeNewsNet PolitiFact CSV",
+  "pipeline": "hybrid_text_plus_metadata_pro",
+  "metadata_feature_columns": [
+    "tweet_count",
+    "has_tweets",
+    "log_tweet_count",
+    "title_len",
+    "url_len"
+  ],
+  "n_rows": 1053,
+  "split_strategy": "group_by_source_domain",
+  "split_sizes": {
+    "train": 630,
+    "val": 270,
+    "test": 153
+  },
+  "vectorizer": {
+    "max_features": 50000,
+    "min_df": 2,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "stop_words": "english"
+  },
+  "model": {
+    "type": "LogisticRegression",
+    "max_iter": 3000,
+    "class_weight": "balanced",
+    "random_state": 42
+  },
+  "selected_threshold": 0.4,
+  "test_metrics": {
+    "threshold": 0.4,
+    "accuracy": 0.8169934640522876,
+    "precision": 0.6666666666666666,
+    "recall": 0.88,
+    "f1": 0.7586206896551724,
+    "tp": 44,
+    "fp": 22,
+    "tn": 81,
+    "fn": 6
+  }
+}

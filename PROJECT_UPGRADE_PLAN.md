@@ -8,7 +8,7 @@ This roadmap turns the repository from an academic prototype into a credible mis
 - Professional hiring signal comes from reliability and rigor, not only model accuracy.
 
 ## Phase 1 (Completed in this pass)
-- Added `src/train_eval_politifact_tfidf.py` with:
+- Added `src/train_eval_politifact_tfidf.py`, `src/train_eval_metadata_pro.py`, and `src/train_eval_hybrid_pro.py` with:
   - train/validation/test protocol
   - validation-only threshold selection
   - group-aware splitting by source domain (fallback to stratified when needed)
